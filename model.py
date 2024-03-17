@@ -18,18 +18,20 @@ import torch.nn.functional as F
 class Net(nn.Module):
     
     def __init__(self):
-        super(Net,self).__init__()
+        super().__init__()
         self.resBlock1 = self.resBlock2 = self.resBlock3 = nn.Sequential(
-            nn.Conv2d(16,16,5,padding=2),
+            nn.Conv2d(32,32,5,padding=2),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.Conv2d(16,16,5,padding=2),
+            nn.Conv2d(32,32,5,padding=2),
         )
         self.manyResBlock=[self.resBlock1,self.resBlock2,self.resBlock3]
         # for _ in range(3):
         #     self.manyResBlock.append(self.resBlock)
         # [self.resBlock,self.resBlock,self.resBlock]
         self.first = nn.Sequential(
-            nn.Conv2d(3,16,5),
+            nn.Conv2d(3,32,5),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(2,2)
         )
@@ -38,7 +40,7 @@ class Net(nn.Module):
         #     self.blocks.append(self.manyResBlock)
         #     self.blocks.append(nn.MaxPool2d(2,2))
         self.final = nn.Sequential(
-            nn.Linear(16 * 7 * 7, 120),
+            nn.Linear(32 * 7 * 7, 120),
             nn.ReLU(),
             nn.Linear(120, 84),
             nn.ReLU(),
@@ -75,7 +77,7 @@ class Net(nn.Module):
         # x = self.block(x)
         # # print('after block 2',x.shape)
         # x = self.block(x)
-        # print('after block 3',x.shape)
+        # print('after blocks',x.shape)
         # print('still alive:')
         x = self.final(x.reshape(bsize,-1))
         # print('final output',x.shape)
