@@ -29,7 +29,7 @@ def evaluation(net, dataLoader, device):
 
 
 if __name__ == "__main__":
-    bsz = 128
+    bsz = 32
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     net = torch.load(os.path.join(base_dir, "models/cifar10_4x_best.pth"))
     print("number of trained parameters: %d" %
