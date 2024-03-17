@@ -19,13 +19,17 @@ class Net(nn.Module):
     
     def __init__(self):
         super().__init__()
-        self.resBlock1 = self.resBlock2 = self.resBlock3 = nn.Sequential(
+        self.blockNum = 10
+        self.manyResBlock = []
+        for i in range(self.blockNum):
+            x = nn.Sequential(
             nn.Conv2d(32,32,5,padding=2),
             nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.Conv2d(32,32,5,padding=2),
         )
-        self.manyResBlock=[self.resBlock1,self.resBlock2,self.resBlock3]
+            self.add_module(f'Conv{i}',x)
+            self.manyResBlock.append(x)
         # for _ in range(3):
         #     self.manyResBlock.append(self.resBlock)
         # [self.resBlock,self.resBlock,self.resBlock]
@@ -40,7 +44,7 @@ class Net(nn.Module):
         #     self.blocks.append(self.manyResBlock)
         #     self.blocks.append(nn.MaxPool2d(2,2))
         self.final = nn.Sequential(
-            nn.Linear(32 * 7 * 7, 120),
+            nn.Linear(32, 120),
             nn.ReLU(),
             nn.Linear(120, 84),
             nn.ReLU(),
@@ -56,9 +60,10 @@ class Net(nn.Module):
     def ResBlock(self,x,i):
         return nn.ReLU()(x+self.manyResBlock[i](x))
     def ManyResBlock(self,x):
-        for i in range(3):
+        for i in range(self.blockNum):
             x = self.ResBlock(x,i)
-            x = nn.MaxPool2d(2,2)(x)
+            if i%2:
+                x = nn.MaxPool2d(2,2)(x)
         return x
     def forward(self, x):
         bsize = x.shape[0]
@@ -72,11 +77,6 @@ class Net(nn.Module):
         #     x = block(x)
             # print(x.shape)
         x = self.ManyResBlock(x)
-        # x = self.block(x)
-        # # print('after block 1',x.shape)
-        # x = self.block(x)
-        # # print('after block 2',x.shape)
-        # x = self.block(x)
         # print('after blocks',x.shape)
         # print('still alive:')
         x = self.final(x.reshape(bsize,-1))
@@ -89,6 +89,10 @@ class Net(nn.Module):
         # x = F.relu(self.fc2(x))
         # x = self.fc3(x)
         return x
-
+    def to(self,device):
+        self.first.to(device)
+        self.final.to(device)
+        for i in self.manyResBlock:
+            i.to(device)
     def pre_process(self, x):
         return x.float()
