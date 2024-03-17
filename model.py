@@ -41,20 +41,22 @@ class Net(nn.Module):
         super(Net,self).__init__()
         self.cnt=0
         self.first = nn.Sequential(
-            nn.Conv2d(3,64,5),
-            nn.BatchNorm2d(64),
-            # nn.ReLU(),
-            nn.MaxPool2d(2,2)
+            nn.Conv2d(3,128,5),
+            nn.BatchNorm2d(128),
+            nn.ReLU(),
+            nn.MaxPool2d(2)
         )
         self.conv1 = nn.Sequential(
-            nn.Conv2d(64,64,7,stride=2,padding=3),
-            nn.MaxPool2d(2,2)
+            nn.Conv2d(64,128,7,stride=2,padding=3),
+            nn.BatchNorm2d(128),
+            # nn.MaxPool2d(2)
         )
-        self.manyResBlock1 = self.createManyResBlock()
+        self.manyResBlock1 = self.createManyResBlock(channels=128)
         # print('------------1-------------')
         self.conv2 =  nn.Sequential(
-            nn.Conv2d(64,128,3,stride=2,padding=1),
-            nn.MaxPool2d(2,2)
+            nn.Conv2d(128,128,5,stride=2,padding=2),
+            nn.BatchNorm2d(128),
+            # nn.MaxPool2d(2)
         )
         self.manyResBlock2 = self.createManyResBlock(channels=128,BlockNum=5)
         # print('------------2-------------')
@@ -79,11 +81,11 @@ class Net(nn.Module):
         #     self.blocks.append(self.manyResBlock)
         #     self.blocks.append(nn.MaxPool2d(2,2))
         self.final = nn.Sequential(
-            nn.Linear(512,256),
-            nn.Dropout1d(0.2),
+            nn.Linear(128,256),
+            # nn.Dropout1d(0.2),
             nn.ReLU(),
             nn.Linear(256,128),
-            nn.Dropout1d(0.2),
+            # nn.Dropout1d(0.2),
             nn.ReLU(),
             nn.Linear(128,10),
         )
@@ -114,6 +116,9 @@ class Net(nn.Module):
             # print(x.shape)
         # print('before self.conv1')
         # x = self.conv1(x)
+        # print(self.manyResBlock1[0])
+        self.manyResBlock1[0](x)
+        # print('----------------')
         x = self.PassThrough(self.manyResBlock1,x)
         # print('before self.conv2')
         x = self.conv2(x)
@@ -125,6 +130,7 @@ class Net(nn.Module):
         # x = self.PassThrough(self.manyResBlock4,x)
         # print('after blocks',x.shape)
         # print('still alive:')
+        x = nn.MaxPool2d(4,4)(x)
         y = x.reshape(bsize,-1)
         # print(y.shape)
         x = self.final(y)
