@@ -23,10 +23,11 @@ class Net(nn.Module):
         self.manyResBlock = []
         for i in range(self.blockNum):
             x = nn.Sequential(
-            nn.Conv2d(32,32,5,padding=2),
-            nn.BatchNorm2d(32),
+            nn.Conv2d(64,64,5,padding=2),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(32,32,5,padding=2),
+            nn.Dropout2d(0.1),
+            nn.Conv2d(64,64,5,padding=2),
         )
             self.add_module(f'Conv{i}',x)
             self.manyResBlock.append(x)
@@ -34,8 +35,8 @@ class Net(nn.Module):
         #     self.manyResBlock.append(self.resBlock)
         # [self.resBlock,self.resBlock,self.resBlock]
         self.first = nn.Sequential(
-            nn.Conv2d(3,32,5),
-            nn.BatchNorm2d(32),
+            nn.Conv2d(3,64,5),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(2,2)
         )
@@ -44,11 +45,11 @@ class Net(nn.Module):
         #     self.blocks.append(self.manyResBlock)
         #     self.blocks.append(nn.MaxPool2d(2,2))
         self.final = nn.Sequential(
-            nn.Linear(32, 120),
+            nn.Linear(64, 256),
             nn.ReLU(),
-            nn.Linear(120, 84),
+            nn.Linear(256, 128),
             nn.ReLU(),
-            nn.Linear(84,10)
+            nn.Linear(128,10)
         )
         # self.conv1 = nn.Conv2d(3, 16, 5)
         # self.pool = nn.MaxPool2d(2, 2)
