@@ -56,18 +56,18 @@ class Net(nn.Module):
                                                     #  ,BlockNum=4
                                                      )
         self.conv3 = nn.Sequential(
-            nn.Conv2d(128,256,3,padding=1),
-            nn.BatchNorm2d(256),
+            nn.Conv2d(128,128,3,padding=1),
+            nn.BatchNorm2d(128),
             nn.MaxPool2d(2)
             )
-        self.manyResBlock3 = self.createManyResBlock(channels=256
+        self.manyResBlock3 = self.createManyResBlock(channels=128
                                                     #  ,BlockNum=5
                                                      )
         self.final = nn.Sequential(
-            nn.Linear(256,128),
+            nn.Linear(128,256),
             # nn.Dropout1d(0.2),
             nn.ReLU(),
-            nn.Linear(128,64),
+            nn.Linear(256,64),
             # nn.Dropout1d(0.2),
             nn.ReLU(),
             nn.Linear(64,10),
