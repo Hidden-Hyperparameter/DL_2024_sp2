@@ -49,35 +49,35 @@ class Net(nn.Module):
             nn.Conv2d(3,64,7,stride=2,padding=3),
             nn.BatchNorm2d(64),
             nn.MaxPool2d(2),
-            nn.Dropout2d(0.35)
+            nn.Dropout2d(0.4)
         )
         self.manyResBlock1 = self.createManyResBlock()
         self.conv2 =  nn.Sequential(
             nn.Conv2d(64,128,3,stride=2,padding=1),
             nn.BatchNorm2d(128),
             nn.MaxPool2d(2),
-            nn.Dropout2d(0.35)
+            nn.Dropout2d(0.4)
         )
         self.manyResBlock2 = self.createManyResBlock(channels=128
-                                                    #  ,BlockNum=4
+                                                     ,BlockNum=4
                                                      )
         self.conv3 = nn.Sequential(
             nn.Conv2d(128,192,3,padding=1),
             nn.BatchNorm2d(192),
             nn.MaxPool2d(2),
-            nn.Dropout2d(0.35)
+            nn.Dropout2d(0.4)
             )
         self.manyResBlock3 = self.createManyResBlock(channels=192
-                                                    #  ,BlockNum=5
+                                                     ,BlockNum=4
                                                      )
         self.final = nn.Sequential(
-            nn.Linear(192,256),
-            # nn.Dropout1d(0.2),
-            nn.ReLU(),
-            nn.Linear(256,64),
-            # nn.Dropout1d(0.2),
-            nn.ReLU(),
-            nn.Linear(64,10),
+            # nn.Linear(192,256),
+            # # nn.Dropout1d(0.2),
+            # nn.ReLU(),
+            # nn.Linear(256,64),
+            # # nn.Dropout1d(0.2),
+            # nn.ReLU(),
+            nn.Linear(192,10),
         )
     def forward(self, x):
         bsize = x.shape[0]

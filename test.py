@@ -3,9 +3,7 @@ import torchvision
 # torch.backends.cudnn.enabled = False
 import os
 device = 'cuda' if torch.cuda.is_available() else 'XU WEI'
-def test(classIndex,name='test',model_name = './models/cifar10_4x_best.pth'):
-    model = torch.load(model_name)
-    model.eval()
+def test(classIndex,model,name='test'):
     p = os.path.join('testdataset',name,f'class{classIndex}')
     _,_,filename=list(os.walk(p))[0]
     from PIL import Image
@@ -40,9 +38,11 @@ def test(classIndex,name='test',model_name = './models/cifar10_4x_best.pth'):
     accs /= 10
     return accs
 def fulltest(model_name='./models/cifar10_4x_best.pth'):
+    model = torch.load(model_name)
+    model.eval()
     tot_acc = 0
     for index in range(10):
-        tot_acc+= test(index,model_name=model_name)
+        tot_acc+= test(index,model=model)
     print('The accuracy of model is',tot_acc*10,'%')
     return tot_acc*10
 if __name__ == '__main__':
