@@ -2,3 +2,5 @@ __pycache__/
 cifar_10_4x/
 **/cifar10_4x_0.pth
 cifar10-128/
+testdataset/
+.nfs00000000009281d3000000b6
