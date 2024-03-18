@@ -38,7 +38,11 @@ class Net(nn.Module):
         return x
 
     def __init__(self):
-        super(Net,self).__init__()
+        super(
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            Net,self
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        ).__init__()
         self.cnt=0
         
         self.conv1 = nn.Sequential(
