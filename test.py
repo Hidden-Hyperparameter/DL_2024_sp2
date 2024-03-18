@@ -5,7 +5,7 @@ import os
 device = 'cuda' if torch.cuda.is_available() else 'XU WEI'
 def test(classIndex,name='test',model_name = './models/cifar10_4x_best.pth'):
     model = torch.load(model_name)
-    p = os.path.join('cifar10-128',name,f'class{classIndex}')
+    p = os.path.join('testdataset',name,f'class{classIndex}')
     _,_,filename=list(os.walk(p))[0]
     from PIL import Image
     import numpy as np
