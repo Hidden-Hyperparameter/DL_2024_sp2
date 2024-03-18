@@ -1,0 +1,917 @@
+{
+    "model_type": "import torch.nn as nn\nimport torch.nn.functional as F\n\n# class ResBlock(nn.Module):\n#     def __init__(self,device) -> None:\n#         super().__init__()\n        \n#     def forward(self,x):\n#         return nn.ReLU(self.net(x)+x)\n# class BigResBlock(nn.Module):\n#     def __init__(self) -> None:\n#         super().__init__()\n#         self.net = [ResBlock(),ResBlock(),ResBlock()]\n#     def forward(self,x):\n#         for lyer in self.net:\n#             x=lyer(x)\n#         return x\nclass Net(nn.Module):\n    def createManyResBlock(self,channels=64,BlockNum=3,kernel_size=3):\n        self.cnt+=1\n        manyResBlock = []\n        for i in range(BlockNum):\n            x = nn.Sequential(\n                nn.Conv2d(channels,channels,kernel_size,padding=(kernel_size-1)//2),\n                nn.BatchNorm2d(channels),\n                nn.ReLU(),\n                # nn.Dropout2d(0.1),\n                nn.Conv2d(channels,channels,kernel_size,padding=(kernel_size-1)//2),\n            )\n            self.add_module(f'{self.cnt}_{i}',x)\n            manyResBlock.append(x)\n        return manyResBlock\n    def PassThrough(self,manyResBlock:list,x):\n        for i in range(len(manyResBlock)):\n            x = F.relu(x+manyResBlock[i](x))\n            # if i%2:\n            #     x = nn.MaxPool2d(2)(x)\n        return x\n\n    def __init__(self):\n        super(\n#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n            Net,self\n#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n        ).__init__()\n        self.cnt=0\n        \n        self.conv1 = nn.Sequential(\n            nn.Conv2d(3,64,7,stride=2,padding=3),\n            nn.BatchNorm2d(64),\n            nn.MaxPool2d(2),\n            # nn.Dropout2d(0.35)\n        )\n        self.manyResBlock1 = self.createManyResBlock()\n        self.conv2 =  nn.Sequential(\n            nn.Conv2d(64,128,3,stride=2,padding=1),\n            nn.BatchNorm2d(128),\n            nn.MaxPool2d(2),\n            # nn.Dropout2d(0.35)\n        )\n        self.manyResBlock2 = self.createManyResBlock(channels=128\n                                                    #  ,BlockNum=4\n                                                     )\n        self.conv3 = nn.Sequential(\n            nn.Conv2d(128,192,3,padding=1),\n            nn.BatchNorm2d(192),\n            nn.MaxPool2d(2),\n            # nn.Dropout2d(0.35)\n            )\n        self.manyResBlock3 = self.createManyResBlock(channels=192\n                                                    #  ,BlockNum=5\n                                                     )\n        self.final = nn.Sequential(\n            nn.Linear(192,256),\n            # nn.Dropout1d(0.2),\n            nn.ReLU(),\n            nn.Linear(256,64),\n            # nn.Dropout1d(0.2),\n            nn.ReLU(),\n            nn.Linear(64,10),\n        )\n    def forward(self, x):\n        bsize = x.shape[0]\n        x = self.pre_process(x)\n        x = self.conv1(x)\n        # print('after conv1',x.shape)\n        x = self.PassThrough(self.manyResBlock1,x)\n        # print('after block 1',x.shape)\n        x = self.conv2(x)\n        # print('after conv2',x.shape)\n        x = self.PassThrough(self.manyResBlock2,x)\n        # print('after block 2',x.shape)\n        x = self.conv3(x)\n        # print('after conv3',x.shape)\n        x = self.PassThrough(self.manyResBlock3,x)\n        # print('after block 3',x.shape)\n        x = nn.AvgPool2d(4)(x)\n        y = x.reshape(bsize,-1)\n        x = self.final(y)\n        return x\n    def to(self,device):\n        self.final.to(device)\n        lst1 = [\n            self.conv1,\n                self.conv2,\n                self.conv3\n                ]\n        for i in lst1:\n            i.to(device)\n        lst = [\n            self.manyResBlock1,\n            self.manyResBlock2,\n            self.manyResBlock3\n            ]\n        for i in lst:\n            for j in i:\n                j.to(device)\n    def pre_process(self, x):\n        return x.float()",
+    "train_history": [
+        {
+            "optimizer": {
+                "lr": 0.001,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 5e-05,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 31.6225,
+                    "valid accuracy": 42.08,
+                    "loss": 0.22748586535453796,
+                    "valid loss": 0.04780769720673561
+                },
+                {
+                    "train accuracy": 42.7775,
+                    "valid accuracy": 46.64,
+                    "loss": 0.19344010949134827,
+                    "valid loss": 0.046058930456638336
+                },
+                {
+                    "train accuracy": 50.4925,
+                    "valid accuracy": 57.31,
+                    "loss": 0.16940666735172272,
+                    "valid loss": 0.035742904990911484
+                },
+                {
+                    "train accuracy": 57.2975,
+                    "valid accuracy": 62.51,
+                    "loss": 0.14844094216823578,
+                    "valid loss": 0.032380279153585434
+                },
+                {
+                    "train accuracy": 61.59,
+                    "valid accuracy": 67.15,
+                    "loss": 0.13449899852275848,
+                    "valid loss": 0.028940733522176743
+                },
+                {
+                    "train accuracy": 65.84,
+                    "valid accuracy": 70.57,
+                    "loss": 0.12145604938268661,
+                    "valid loss": 0.025905050337314606
+                },
+                {
+                    "train accuracy": 69.095,
+                    "valid accuracy": 70.98,
+                    "loss": 0.11005374789237976,
+                    "valid loss": 0.025608297437429428
+                },
+                {
+                    "train accuracy": 71.3175,
+                    "valid accuracy": 77.47,
+                    "loss": 0.10212614387273788,
+                    "valid loss": 0.020425504073500633
+                },
+                {
+                    "train accuracy": 73.5,
+                    "valid accuracy": 78.13,
+                    "loss": 0.09498901665210724,
+                    "valid loss": 0.019844386726617813
+                },
+                {
+                    "train accuracy": 75.2775,
+                    "valid accuracy": 80.09,
+                    "loss": 0.08970517665147781,
+                    "valid loss": 0.01798931136727333
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.001,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 8e-05,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 76.385,
+                    "valid accuracy": 80.5,
+                    "loss": 0.0851917713880539,
+                    "valid loss": 0.017830416560173035
+                },
+                {
+                    "train accuracy": 77.045,
+                    "valid accuracy": 79.89,
+                    "loss": 0.08323223143815994,
+                    "valid loss": 0.01828317902982235
+                },
+                {
+                    "train accuracy": 77.9225,
+                    "valid accuracy": 80.7,
+                    "loss": 0.0799151137471199,
+                    "valid loss": 0.01816060207784176
+                },
+                {
+                    "train accuracy": 78.81,
+                    "valid accuracy": 80.02,
+                    "loss": 0.07720187306404114,
+                    "valid loss": 0.01833612099289894
+                },
+                {
+                    "train accuracy": 79.435,
+                    "valid accuracy": 83.24,
+                    "loss": 0.07510341703891754,
+                    "valid loss": 0.015131362713873386
+                },
+                {
+                    "train accuracy": 79.945,
+                    "valid accuracy": 81.03,
+                    "loss": 0.07330672442913055,
+                    "valid loss": 0.017693620175123215
+                },
+                {
+                    "train accuracy": 80.6225,
+                    "valid accuracy": 82.36,
+                    "loss": 0.07129256427288055,
+                    "valid loss": 0.01615799590945244
+                },
+                {
+                    "train accuracy": 80.92,
+                    "valid accuracy": 83.09,
+                    "loss": 0.06947780400514603,
+                    "valid loss": 0.016080671921372414
+                },
+                {
+                    "train accuracy": 81.625,
+                    "valid accuracy": 83.03,
+                    "loss": 0.06716153025627136,
+                    "valid loss": 0.015659799799323082
+                },
+                {
+                    "train accuracy": 81.7325,
+                    "valid accuracy": 85.03,
+                    "loss": 0.06659509986639023,
+                    "valid loss": 0.013833758421242237
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.0008,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 8e-05,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 83.0325,
+                    "valid accuracy": 85.24,
+                    "loss": 0.06166791915893555,
+                    "valid loss": 0.013459323905408382
+                },
+                {
+                    "train accuracy": 83.92,
+                    "valid accuracy": 86.17,
+                    "loss": 0.059421464800834656,
+                    "valid loss": 0.01274950336664915
+                },
+                {
+                    "train accuracy": 84.3175,
+                    "valid accuracy": 85.62,
+                    "loss": 0.05775172635912895,
+                    "valid loss": 0.013383968733251095
+                },
+                {
+                    "train accuracy": 84.6175,
+                    "valid accuracy": 83.08,
+                    "loss": 0.05711252987384796,
+                    "valid loss": 0.01587475836277008
+                },
+                {
+                    "train accuracy": 84.72,
+                    "valid accuracy": 86.65,
+                    "loss": 0.05636264383792877,
+                    "valid loss": 0.012918836437165737
+                },
+                {
+                    "train accuracy": 85.2175,
+                    "valid accuracy": 87.37,
+                    "loss": 0.05448855459690094,
+                    "valid loss": 0.011666151694953442
+                },
+                {
+                    "train accuracy": 85.2,
+                    "valid accuracy": 87.29,
+                    "loss": 0.05407346785068512,
+                    "valid loss": 0.01189817301928997
+                },
+                {
+                    "train accuracy": 85.41,
+                    "valid accuracy": 87.13,
+                    "loss": 0.05378968268632889,
+                    "valid loss": 0.011745456606149673
+                },
+                {
+                    "train accuracy": 85.45,
+                    "valid accuracy": 88.2,
+                    "loss": 0.05307186767458916,
+                    "valid loss": 0.011061480268836021
+                },
+                {
+                    "train accuracy": 86.0725,
+                    "valid accuracy": 87.91,
+                    "loss": 0.05121497064828873,
+                    "valid loss": 0.011069796048104763
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.001,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 6e-05,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 85.0275,
+                    "valid accuracy": 85.94,
+                    "loss": 0.05552574247121811,
+                    "valid loss": 0.012787101790308952
+                },
+                {
+                    "train accuracy": 85.295,
+                    "valid accuracy": 86.35,
+                    "loss": 0.05478431284427643,
+                    "valid loss": 0.012639615684747696
+                },
+                {
+                    "train accuracy": 85.375,
+                    "valid accuracy": 86.96,
+                    "loss": 0.054392874240875244,
+                    "valid loss": 0.012125236913561821
+                },
+                {
+                    "train accuracy": 85.5075,
+                    "valid accuracy": 86.4,
+                    "loss": 0.052833203226327896,
+                    "valid loss": 0.012506627477705479
+                },
+                {
+                    "train accuracy": 85.75,
+                    "valid accuracy": 86.79,
+                    "loss": 0.05251413956284523,
+                    "valid loss": 0.012202584184706211
+                },
+                {
+                    "train accuracy": 85.9675,
+                    "valid accuracy": 86.34,
+                    "loss": 0.051703039556741714,
+                    "valid loss": 0.01263392623513937
+                },
+                {
+                    "train accuracy": 86.1675,
+                    "valid accuracy": 86.4,
+                    "loss": 0.05093368515372276,
+                    "valid loss": 0.012570077553391457
+                },
+                {
+                    "train accuracy": 86.32,
+                    "valid accuracy": 87.61,
+                    "loss": 0.050367459654808044,
+                    "valid loss": 0.01126606110483408
+                },
+                {
+                    "train accuracy": 86.31,
+                    "valid accuracy": 87.75,
+                    "loss": 0.049862660467624664,
+                    "valid loss": 0.011644499376416206
+                },
+                {
+                    "train accuracy": 86.6825,
+                    "valid accuracy": 88.18,
+                    "loss": 0.0490691103041172,
+                    "valid loss": 0.011196796782314777
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.0012,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 6e-05,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 85.6975,
+                    "valid accuracy": 87.43,
+                    "loss": 0.05242646485567093,
+                    "valid loss": 0.011906217783689499
+                },
+                {
+                    "train accuracy": 85.815,
+                    "valid accuracy": 87.62,
+                    "loss": 0.05222947895526886,
+                    "valid loss": 0.011386565864086151
+                },
+                {
+                    "train accuracy": 85.8275,
+                    "valid accuracy": 87.29,
+                    "loss": 0.05192888528108597,
+                    "valid loss": 0.011731361038982868
+                },
+                {
+                    "train accuracy": 86.21,
+                    "valid accuracy": 86.94,
+                    "loss": 0.050767336040735245,
+                    "valid loss": 0.012235352769494057
+                },
+                {
+                    "train accuracy": 86.105,
+                    "valid accuracy": 85.04,
+                    "loss": 0.05070283263921738,
+                    "valid loss": 0.014002839103341103
+                },
+                {
+                    "train accuracy": 86.4825,
+                    "valid accuracy": 86.82,
+                    "loss": 0.05012154206633568,
+                    "valid loss": 0.01227380521595478
+                },
+                {
+                    "train accuracy": 86.4625,
+                    "valid accuracy": 88.09,
+                    "loss": 0.04969099909067154,
+                    "valid loss": 0.011001021601259708
+                },
+                {
+                    "train accuracy": 86.55,
+                    "valid accuracy": 87.01,
+                    "loss": 0.04952836036682129,
+                    "valid loss": 0.012055023573338985
+                },
+                {
+                    "train accuracy": 86.775,
+                    "valid accuracy": 88.08,
+                    "loss": 0.04856140539050102,
+                    "valid loss": 0.011396482586860657
+                },
+                {
+                    "train accuracy": 86.5675,
+                    "valid accuracy": 87.83,
+                    "loss": 0.049198590219020844,
+                    "valid loss": 0.011227013543248177
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.001,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 6e-05,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 87.3325,
+                    "valid accuracy": 89.13,
+                    "loss": 0.04594183340668678,
+                    "valid loss": 0.010118110105395317
+                },
+                {
+                    "train accuracy": 87.8475,
+                    "valid accuracy": 89.09,
+                    "loss": 0.04432835429906845,
+                    "valid loss": 0.010364355519413948
+                },
+                {
+                    "train accuracy": 88.0475,
+                    "valid accuracy": 89.05,
+                    "loss": 0.04444979503750801,
+                    "valid loss": 0.01001001987606287
+                },
+                {
+                    "train accuracy": 88.095,
+                    "valid accuracy": 89.34,
+                    "loss": 0.044285453855991364,
+                    "valid loss": 0.009931610897183418
+                },
+                {
+                    "train accuracy": 88.26,
+                    "valid accuracy": 88.65,
+                    "loss": 0.04333503916859627,
+                    "valid loss": 0.01061700563877821
+                },
+                {
+                    "train accuracy": 88.415,
+                    "valid accuracy": 89.26,
+                    "loss": 0.04301964491605759,
+                    "valid loss": 0.01002743374556303
+                },
+                {
+                    "train accuracy": 88.6525,
+                    "valid accuracy": 89.26,
+                    "loss": 0.042209696024656296,
+                    "valid loss": 0.010231681168079376
+                },
+                {
+                    "train accuracy": 88.39,
+                    "valid accuracy": 88.97,
+                    "loss": 0.042573023587465286,
+                    "valid loss": 0.010119781829416752
+                },
+                {
+                    "train accuracy": 88.535,
+                    "valid accuracy": 88.67,
+                    "loss": 0.041533783078193665,
+                    "valid loss": 0.010603264905512333
+                },
+                {
+                    "train accuracy": 88.605,
+                    "valid accuracy": 88.79,
+                    "loss": 0.041839420795440674,
+                    "valid loss": 0.010548912920057774
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.0008,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 6e-05,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 89.325,
+                    "valid accuracy": 89.9,
+                    "loss": 0.039032548666000366,
+                    "valid loss": 0.009160556830465794
+                },
+                {
+                    "train accuracy": 89.85,
+                    "valid accuracy": 89.47,
+                    "loss": 0.03704848513007164,
+                    "valid loss": 0.00994103867560625
+                },
+                {
+                    "train accuracy": 89.915,
+                    "valid accuracy": 89.45,
+                    "loss": 0.03718205913901329,
+                    "valid loss": 0.00975991040468216
+                },
+                {
+                    "train accuracy": 90.115,
+                    "valid accuracy": 89.62,
+                    "loss": 0.036161456257104874,
+                    "valid loss": 0.01004020869731903
+                },
+                {
+                    "train accuracy": 90.1075,
+                    "valid accuracy": 89.65,
+                    "loss": 0.035973306745290756,
+                    "valid loss": 0.009872079826891422
+                },
+                {
+                    "train accuracy": 90.0225,
+                    "valid accuracy": 90.32,
+                    "loss": 0.035748329013586044,
+                    "valid loss": 0.009089874103665352
+                },
+                {
+                    "train accuracy": 90.0375,
+                    "valid accuracy": 90.01,
+                    "loss": 0.03599589318037033,
+                    "valid loss": 0.009235471487045288
+                },
+                {
+                    "train accuracy": 90.275,
+                    "valid accuracy": 89.72,
+                    "loss": 0.03554467856884003,
+                    "valid loss": 0.010040239430963993
+                },
+                {
+                    "train accuracy": 90.2975,
+                    "valid accuracy": 90.36,
+                    "loss": 0.035531990230083466,
+                    "valid loss": 0.009007041342556477
+                },
+                {
+                    "train accuracy": 90.4875,
+                    "valid accuracy": 90.42,
+                    "loss": 0.03534021973609924,
+                    "valid loss": 0.009290927089750767
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.0007,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 0.0001,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 90.91,
+                    "valid accuracy": 90.59,
+                    "loss": 0.03349686786532402,
+                    "valid loss": 0.008681257255375385
+                },
+                {
+                    "train accuracy": 90.9075,
+                    "valid accuracy": 90.12,
+                    "loss": 0.03312543407082558,
+                    "valid loss": 0.009393983520567417
+                },
+                {
+                    "train accuracy": 90.7625,
+                    "valid accuracy": 90.73,
+                    "loss": 0.03308013081550598,
+                    "valid loss": 0.008606691844761372
+                },
+                {
+                    "train accuracy": 90.89,
+                    "valid accuracy": 90.01,
+                    "loss": 0.03330554813146591,
+                    "valid loss": 0.009603098966181278
+                },
+                {
+                    "train accuracy": 90.8175,
+                    "valid accuracy": 90.38,
+                    "loss": 0.03373181074857712,
+                    "valid loss": 0.009363560937345028
+                },
+                {
+                    "train accuracy": 90.9775,
+                    "valid accuracy": 90.2,
+                    "loss": 0.03344152495265007,
+                    "valid loss": 0.009352544322609901
+                },
+                {
+                    "train accuracy": 90.9675,
+                    "valid accuracy": 89.82,
+                    "loss": 0.03343654051423073,
+                    "valid loss": 0.009754898957908154
+                },
+                {
+                    "train accuracy": 90.7975,
+                    "valid accuracy": 90.08,
+                    "loss": 0.03385116159915924,
+                    "valid loss": 0.009579612873494625
+                },
+                {
+                    "train accuracy": 90.5875,
+                    "valid accuracy": 90.37,
+                    "loss": 0.0345577672123909,
+                    "valid loss": 0.008858457207679749
+                },
+                {
+                    "train accuracy": 90.6225,
+                    "valid accuracy": 90.09,
+                    "loss": 0.03386084735393524,
+                    "valid loss": 0.009186502546072006
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.0006,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 0.0002,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 90.9625,
+                    "valid accuracy": 90.67,
+                    "loss": 0.03264284133911133,
+                    "valid loss": 0.00893063098192215
+                },
+                {
+                    "train accuracy": 91.0675,
+                    "valid accuracy": 89.08,
+                    "loss": 0.032910071313381195,
+                    "valid loss": 0.010252425447106361
+                },
+                {
+                    "train accuracy": 90.8425,
+                    "valid accuracy": 91.07,
+                    "loss": 0.03391855210065842,
+                    "valid loss": 0.008517908863723278
+                },
+                {
+                    "train accuracy": 90.805,
+                    "valid accuracy": 89.29,
+                    "loss": 0.03384770452976227,
+                    "valid loss": 0.010101663880050182
+                },
+                {
+                    "train accuracy": 90.7325,
+                    "valid accuracy": 90.16,
+                    "loss": 0.03405619412660599,
+                    "valid loss": 0.009132102131843567
+                },
+                {
+                    "train accuracy": 90.3025,
+                    "valid accuracy": 88.78,
+                    "loss": 0.03497721999883652,
+                    "valid loss": 0.010784870013594627
+                },
+                {
+                    "train accuracy": 90.4825,
+                    "valid accuracy": 89.41,
+                    "loss": 0.034624066203832626,
+                    "valid loss": 0.010514270514249802
+                },
+                {
+                    "train accuracy": 90.35,
+                    "valid accuracy": 89.73,
+                    "loss": 0.035470541566610336,
+                    "valid loss": 0.009866897948086262
+                },
+                {
+                    "train accuracy": 90.39,
+                    "valid accuracy": 90.07,
+                    "loss": 0.03534457087516785,
+                    "valid loss": 0.009406794793903828
+                },
+                {
+                    "train accuracy": 90.055,
+                    "valid accuracy": 90.09,
+                    "loss": 0.036222025752067566,
+                    "valid loss": 0.009287933818995953
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.0004,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 0.00025,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 10,
+            "results": [
+                {
+                    "train accuracy": 91.535,
+                    "valid accuracy": 91.59,
+                    "loss": 0.03078652173280716,
+                    "valid loss": 0.008262229152023792
+                },
+                {
+                    "train accuracy": 91.83,
+                    "valid accuracy": 91.07,
+                    "loss": 0.02975916676223278,
+                    "valid loss": 0.008402365259826183
+                },
+                {
+                    "train accuracy": 91.9875,
+                    "valid accuracy": 91.13,
+                    "loss": 0.02950657345354557,
+                    "valid loss": 0.008544917218387127
+                },
+                {
+                    "train accuracy": 92.0525,
+                    "valid accuracy": 90.87,
+                    "loss": 0.029332231730222702,
+                    "valid loss": 0.008792207576334476
+                },
+                {
+                    "train accuracy": 91.8,
+                    "valid accuracy": 90.69,
+                    "loss": 0.03023535944521427,
+                    "valid loss": 0.008841115981340408
+                },
+                {
+                    "train accuracy": 91.895,
+                    "valid accuracy": 90.71,
+                    "loss": 0.02978975512087345,
+                    "valid loss": 0.008899795822799206
+                },
+                {
+                    "train accuracy": 91.9825,
+                    "valid accuracy": 90.75,
+                    "loss": 0.029651787132024765,
+                    "valid loss": 0.008928167633712292
+                },
+                {
+                    "train accuracy": 91.7575,
+                    "valid accuracy": 90.76,
+                    "loss": 0.029630333185195923,
+                    "valid loss": 0.008708365261554718
+                },
+                {
+                    "train accuracy": 91.81,
+                    "valid accuracy": 91.05,
+                    "loss": 0.029720677062869072,
+                    "valid loss": 0.008426292799413204
+                },
+                {
+                    "train accuracy": 91.8,
+                    "valid accuracy": 91.4,
+                    "loss": 0.02984188124537468,
+                    "valid loss": 0.008431324735283852
+                }
+            ]
+        },
+        {
+            "optimizer": {
+                "lr": 0.0003,
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "eps": 1e-08,
+                "weight_decay": 0.00021,
+                "amsgrad": false,
+                "maximize": false,
+                "foreach": null,
+                "capturable": false,
+                "differentiable": false,
+                "fused": null
+            },
+            "epochs": 15,
+            "results": [
+                {
+                    "train accuracy": 92.4675,
+                    "valid accuracy": 91.53,
+                    "loss": 0.027008498087525368,
+                    "valid loss": 0.008108912967145443
+                },
+                {
+                    "train accuracy": 92.9225,
+                    "valid accuracy": 91.84,
+                    "loss": 0.02602454088628292,
+                    "valid loss": 0.007801569998264313
+                },
+                {
+                    "train accuracy": 92.84,
+                    "valid accuracy": 91.71,
+                    "loss": 0.02575903944671154,
+                    "valid loss": 0.008111583068966866
+                },
+                {
+                    "train accuracy": 93.045,
+                    "valid accuracy": 91.71,
+                    "loss": 0.025445761159062386,
+                    "valid loss": 0.00801407266408205
+                },
+                {
+                    "train accuracy": 93.1825,
+                    "valid accuracy": 91.36,
+                    "loss": 0.024805959314107895,
+                    "valid loss": 0.008479153737425804
+                },
+                {
+                    "train accuracy": 93.1,
+                    "valid accuracy": 91.01,
+                    "loss": 0.025175606831908226,
+                    "valid loss": 0.008815791457891464
+                },
+                {
+                    "train accuracy": 93.08,
+                    "valid accuracy": 91.86,
+                    "loss": 0.02519664168357849,
+                    "valid loss": 0.007931330241262913
+                },
+                {
+                    "train accuracy": 93.4475,
+                    "valid accuracy": 91.4,
+                    "loss": 0.024155743420124054,
+                    "valid loss": 0.00834699161350727
+                },
+                {
+                    "train accuracy": 93.035,
+                    "valid accuracy": 90.98,
+                    "loss": 0.024837685748934746,
+                    "valid loss": 0.008726272732019424
+                },
+                {
+                    "train accuracy": 93.2925,
+                    "valid accuracy": 91.52,
+                    "loss": 0.024485057219862938,
+                    "valid loss": 0.008354879915714264
+                },
+                {
+                    "train accuracy": 93.1775,
+                    "valid accuracy": 91.33,
+                    "loss": 0.02463579922914505,
+                    "valid loss": 0.00893150269985199
+                },
+                {
+                    "train accuracy": 93.175,
+                    "valid accuracy": 91.86,
+                    "loss": 0.024936364963650703,
+                    "valid loss": 0.008066903799772263
+                },
+                {
+                    "train accuracy": 93.0,
+                    "valid accuracy": 92.05,
+                    "loss": 0.02511398307979107,
+                    "valid loss": 0.007992262952029705
+                },
+                {
+                    "train accuracy": 93.45,
+                    "valid accuracy": 91.8,
+                    "loss": 0.024160580709576607,
+                    "valid loss": 0.008088217116892338
+                },
+                {
+                    "train accuracy": 93.1225,
+                    "valid accuracy": 91.64,
+                    "loss": 0.02490396425127983,
+                    "valid loss": 0.008090855553746223
+                }
+            ]
+        }
+    ],
+    "description": "\nDon't overfit.\n                ",
+    "test_acc": 88.25
+}
