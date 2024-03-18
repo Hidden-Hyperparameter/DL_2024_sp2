@@ -21,7 +21,7 @@
 
 import os
 file = 'cifar10_4x_best.json'
-try_dirs = ['.','./bests']
+try_dirs = ['.','./models']
 dic = {}
 for try_dir in try_dirs:
     full_dir = os.path.join(try_dir,file)
@@ -44,7 +44,21 @@ for one_10_epochs in history:
     valid_accs.extend([c['valid accuracy'] for c in one_10_epochs['results']])
 # print(len(optimizers))
 # print(len(train_accs))
-# exit()
+hps = []
+for i,opt in enumerate(optimizers):
+    lr,wd = opt['lr'],opt['weight_decay']
+    if len(hps)==0 or not (abs(hps[-1][1]-lr)+abs(hps[-1][2]-wd)<5e-6):
+        # try:
+        #     print(hps[-1][1],lr,hps[-1][1],wd)
+        #     print(abs(hps[-1][1]-lr)+abs(hps[-1][1]-wd))
+        # except:
+        #     pass
+        hps.append((i,lr,wd))
+with open('hyperparameters.txt','w') as f:
+    for u,v,w in hps:
+        f.write('epoch {}: lr {:.6f}, weight_decay {:.6f}\n'.format(10*u,v,w))
+# print(hps)
+exit()
 import matplotlib.pyplot as plt
 import numpy as np
 leng = len(train_accs)
