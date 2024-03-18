@@ -40,16 +40,16 @@ class Net(nn.Module):
     def __init__(self):
         super(
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-            Net,self
+            # Net,self
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         ).__init__()
         self.cnt=0
         
         self.conv1 = nn.Sequential(
-            nn.Conv2d(3,64,7,stride=2,padding=3),
+            nn.Conv2d(3,64,7,padding=3),
             nn.BatchNorm2d(64),
             nn.MaxPool2d(2),
-            nn.Dropout2d(0.3)
+            nn.Dropout2d(0.25)
         )
         self.manyResBlock1 = self.createManyResBlock(
             BlockNum=4
@@ -58,20 +58,27 @@ class Net(nn.Module):
             nn.Conv2d(64,128,3,stride=2,padding=1),
             nn.BatchNorm2d(128),
             nn.MaxPool2d(2),
-            nn.Dropout2d(0.4)
+            nn.Dropout2d(0.35)
         )
         self.manyResBlock2 = self.createManyResBlock(channels=128
-                                                     ,BlockNum=4
                                                      )
         self.conv3 = nn.Sequential(
             nn.Conv2d(128,128,3,padding=1),
             nn.BatchNorm2d(128),
             nn.MaxPool2d(2),
-            nn.Dropout2d(0.5)
+            nn.Dropout2d(0.35)
             )
         self.manyResBlock3 = self.createManyResBlock(channels=128
-                                                     ,BlockNum=4
                                                      )
+        self.conv4 = nn.Sequential(
+            nn.Conv2d(128,64,5,padding=2),
+            nn.BatchNorm2d(64),
+            nn.MaxPool2d(2),
+            nn.Dropout2d(0.25)
+            )
+        self.manyResBlock4 = self.createManyResBlock(channels=64
+                                                     )
+        
         self.final = nn.Sequential(
             # nn.Linear(192,256),
             # # nn.Dropout1d(0.2),
@@ -79,7 +86,7 @@ class Net(nn.Module):
             # nn.Linear(256,64),
             # # nn.Dropout1d(0.2),
             # nn.ReLU(),
-            nn.Linear(128,10),
+            nn.Linear(64,10),
         )
     def forward(self, x):
         bsize = x.shape[0]
@@ -96,6 +103,10 @@ class Net(nn.Module):
         # print('after conv3',x.shape)
         x = self.PassThrough(self.manyResBlock3,x)
         # print('after block 3',x.shape)
+        x = self.conv4(x)
+        # print('after conv4',x.shape)
+        x = self.PassThrough(self.manyResBlock4,x)
+        # print('after block 4',x.shape)
         x = nn.AvgPool2d(4)(x)
         y = x.reshape(bsize,-1)
         x = self.final(y)
@@ -105,14 +116,16 @@ class Net(nn.Module):
         lst1 = [
             self.conv1,
                 self.conv2,
-                self.conv3
+                self.conv3,
+                self.conv4,
                 ]
         for i in lst1:
             i.to(device)
         lst = [
             self.manyResBlock1,
             self.manyResBlock2,
-            self.manyResBlock3
+            self.manyResBlock3,
+            self.manyResBlock4
             ]
         for i in lst:
             for j in i:
