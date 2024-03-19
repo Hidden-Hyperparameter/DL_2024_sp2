@@ -83,9 +83,10 @@ The basic hyperparameters are:
 - total epochs: 200
 
 During the whole training process, I **change the learning rate and weight decay rate** based on the outputs per 10 or 15 epochs. Briefly speaking, my rules are:
-1. If the validation accuracy is too smaller than the training accuracy, then increase the weight decay rate. The value of increment is basically based on my own thoughts. I save model every 10 or 15 epochs, so if the modification of hyperparameters make the model worse, I can go back to previous models.
-2. If the training loss increases, then decrease the learning rate.
+1. If the validation accuracy is too smaller than the training accuracy, then increase the weight decay rate. 
+2. If the training loss generally increases, then decrease the learning rate.
 3. If the training loss(and accuracy) is "stucked" and can't go down any more, then I try to add some randomness into the model. To this end, I increase the learning rate and run for about 5 epochs, then decrease the learning rate to the original value, and try again.
+4. I save model every 10 or 15 epochs, so if the modification of hyperparameters make the model a lot worse, I can go back to previous models.
 
 By this method, the actual hyperparameters are listed below:
 
@@ -121,4 +122,7 @@ The dropout layers in the model are also important.
 
 ## Training Curve
 The training curve is shown below:
-![](./result_cifar10_4x_03182306_acc92.36.png)
+![](./result_cifar10_4x_03190942_acc92.39.png)
+
+The corosponding loss is shown below:
+![](./result_cifar10_4x_03190942_acc92.39_loss.png)
