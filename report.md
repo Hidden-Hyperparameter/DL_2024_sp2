@@ -77,30 +77,35 @@ linear: 64 -> 10
 ```
 
 ## Hyperparameters
-I use Adam for the optimizer. During the whole training process, I also change the learning rate and weight decay rate based on the outputs per 10 or 15 epochs. Briefly speaking, my rules are:
+The basic hyperparameters are:
+- optimizer: Adam
+- batch size: 32
+- total epochs: 200
+
+During the whole training process, I **change the learning rate and weight decay rate** based on the outputs per 10 or 15 epochs. Briefly speaking, my rules are:
 1. If the validation accuracy is too smaller than the training accuracy, then increase the weight decay rate. The value of increment is basically based on my own thoughts. I save model every 10 or 15 epochs, so if the modification of hyperparameters make the model worse, I can go back to previous models.
 2. If the training loss increases, then decrease the learning rate.
-3. If the training loss(and accuracy) is random oscilating, then increase the learning rate and run for about 5 epochs.
+3. If the training loss(and accuracy) is "stucked" and can't go down any more, then I try to add some randomness into the model. To this end, I increase the learning rate and run for about 5 epochs, then decrease the learning rate to the original value, and try again.
 
-The actual numbers are below:
+By this method, the actual hyperparameters are listed below:
 
 ```
-epoch 0: lr 0.001000, weight_decay 0.000050
-epoch 10: lr 0.001000, weight_decay 0.000080
-epoch 20: lr 0.000800, weight_decay 0.000080
-epoch 30: lr 0.001000, weight_decay 0.000060
-epoch 40: lr 0.001200, weight_decay 0.000060
-epoch 50: lr 0.001000, weight_decay 0.000060
-epoch 60: lr 0.000800, weight_decay 0.000060
-epoch 70: lr 0.000700, weight_decay 0.000100
-epoch 80: lr 0.000600, weight_decay 0.000200
-epoch 90: lr 0.000400, weight_decay 0.000250
-epoch 100: lr 0.000300, weight_decay 0.000210
-epoch 115: lr 0.000200, weight_decay 0.000270
-epoch 130: lr 0.000230, weight_decay 0.000500
-epoch 145: lr 0.000150, weight_decay 0.000700
-epoch 160: lr 0.000140, weight_decay 0.000900
-epoch 175: lr 0.000100, weight_decay 0.001500
+After epoch 0: lr 0.001000, weight_decay 0.000050
+After epoch 10: lr 0.001000, weight_decay 0.000080
+After epoch 20: lr 0.000800, weight_decay 0.000080
+After epoch 30: lr 0.001000, weight_decay 0.000060
+After epoch 40: lr 0.001200, weight_decay 0.000060
+After epoch 50: lr 0.001000, weight_decay 0.000060
+After epoch 60: lr 0.000800, weight_decay 0.000060
+After epoch 70: lr 0.000700, weight_decay 0.000100
+After epoch 80: lr 0.000600, weight_decay 0.000200
+After epoch 90: lr 0.000400, weight_decay 0.000250
+After epoch 100: lr 0.000300, weight_decay 0.000210
+After epoch 115: lr 0.000200, weight_decay 0.000270
+After epoch 130: lr 0.000230, weight_decay 0.000500
+After epoch 145: lr 0.000150, weight_decay 0.000700
+After epoch 160: lr 0.000140, weight_decay 0.000900
+After epoch 175: lr 0.000100, weight_decay 0.001500
 ```
 
 ## Tricks and Training Techniques
