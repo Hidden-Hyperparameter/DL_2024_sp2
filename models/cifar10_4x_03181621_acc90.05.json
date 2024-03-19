@@ -22,61 +22,61 @@
                 {
                     "train accuracy": 32.9,
                     "valid accuracy": 40.85,
-                    "loss": 0.22045749425888062,
+                    "loss": 0.055114373564720154,
                     "valid loss": 0.049161672592163086
                 },
                 {
                     "train accuracy": 48.2575,
                     "valid accuracy": 55.78,
-                    "loss": 0.1765119880437851,
+                    "loss": 0.044127997010946274,
                     "valid loss": 0.03845658153295517
                 },
                 {
                     "train accuracy": 56.915,
                     "valid accuracy": 63.91,
-                    "loss": 0.1496347337961197,
+                    "loss": 0.03740868344902992,
                     "valid loss": 0.030573418363928795
                 },
                 {
                     "train accuracy": 62.8225,
                     "valid accuracy": 68.79,
-                    "loss": 0.1299779713153839,
+                    "loss": 0.03249449282884598,
                     "valid loss": 0.027503328397870064
                 },
                 {
                     "train accuracy": 67.1325,
                     "valid accuracy": 71.72,
-                    "loss": 0.1159062460064888,
+                    "loss": 0.0289765615016222,
                     "valid loss": 0.025261780247092247
                 },
                 {
                     "train accuracy": 70.6475,
                     "valid accuracy": 76.54,
-                    "loss": 0.10525214672088623,
+                    "loss": 0.026313036680221558,
                     "valid loss": 0.020880574360489845
                 },
                 {
                     "train accuracy": 73.4575,
                     "valid accuracy": 78.2,
-                    "loss": 0.09595426917076111,
+                    "loss": 0.023988567292690277,
                     "valid loss": 0.019874053075909615
                 },
                 {
                     "train accuracy": 75.465,
                     "valid accuracy": 79.96,
-                    "loss": 0.08903824537992477,
+                    "loss": 0.022259561344981194,
                     "valid loss": 0.018181966617703438
                 },
                 {
                     "train accuracy": 76.9,
                     "valid accuracy": 79.97,
-                    "loss": 0.08380620181560516,
+                    "loss": 0.02095155045390129,
                     "valid loss": 0.018185263499617577
                 },
                 {
                     "train accuracy": 78.2175,
                     "valid accuracy": 81.32,
-                    "loss": 0.07872547954320908,
+                    "loss": 0.01968136988580227,
                     "valid loss": 0.016868259757757187
                 }
             ]
@@ -102,61 +102,61 @@
                 {
                     "train accuracy": 79.7,
                     "valid accuracy": 82.14,
-                    "loss": 0.07354388386011124,
+                    "loss": 0.01838597096502781,
                     "valid loss": 0.01662334054708481
                 },
                 {
                     "train accuracy": 80.985,
                     "valid accuracy": 83.3,
-                    "loss": 0.0692470520734787,
+                    "loss": 0.017311763018369675,
                     "valid loss": 0.015464195050299168
                 },
                 {
                     "train accuracy": 81.6875,
                     "valid accuracy": 84.52,
-                    "loss": 0.06651753932237625,
+                    "loss": 0.016629384830594063,
                     "valid loss": 0.014406402595341206
                 },
                 {
                     "train accuracy": 82.5775,
                     "valid accuracy": 85.03,
-                    "loss": 0.06331061571836472,
+                    "loss": 0.01582765392959118,
                     "valid loss": 0.013882218860089779
                 },
                 {
                     "train accuracy": 83.35,
                     "valid accuracy": 85.07,
-                    "loss": 0.06076952815055847,
+                    "loss": 0.015192382037639618,
                     "valid loss": 0.01392015814781189
                 },
                 {
                     "train accuracy": 83.8575,
                     "valid accuracy": 86.11,
-                    "loss": 0.058821000158786774,
+                    "loss": 0.014705250039696693,
                     "valid loss": 0.012899339199066162
                 },
                 {
                     "train accuracy": 84.3775,
                     "valid accuracy": 86.02,
-                    "loss": 0.05655207857489586,
+                    "loss": 0.014138019643723965,
                     "valid loss": 0.012976604513823986
                 },
                 {
                     "train accuracy": 84.735,
                     "valid accuracy": 86.47,
-                    "loss": 0.05513212829828262,
+                    "loss": 0.013783032074570656,
                     "valid loss": 0.012419435195624828
                 },
                 {
                     "train accuracy": 85.43,
                     "valid accuracy": 86.7,
-                    "loss": 0.052920397371053696,
+                    "loss": 0.013230099342763424,
                     "valid loss": 0.012419583275914192
                 },
                 {
                     "train accuracy": 85.6525,
                     "valid accuracy": 86.75,
-                    "loss": 0.05189235135912895,
+                    "loss": 0.012973087839782238,
                     "valid loss": 0.01223031710833311
                 }
             ]
@@ -182,61 +182,61 @@
                 {
                     "train accuracy": 84.945,
                     "valid accuracy": 86.16,
-                    "loss": 0.05520961806178093,
+                    "loss": 0.013802404515445232,
                     "valid loss": 0.013121102936565876
                 },
                 {
                     "train accuracy": 85.4125,
                     "valid accuracy": 86.59,
-                    "loss": 0.05341756343841553,
+                    "loss": 0.013354390859603882,
                     "valid loss": 0.012447183951735497
                 },
                 {
                     "train accuracy": 85.925,
                     "valid accuracy": 86.55,
-                    "loss": 0.05150860920548439,
+                    "loss": 0.012877152301371098,
                     "valid loss": 0.012554256245493889
                 },
                 {
                     "train accuracy": 86.3325,
                     "valid accuracy": 86.18,
-                    "loss": 0.049922097474336624,
+                    "loss": 0.012480524368584156,
                     "valid loss": 0.013160288333892822
                 },
                 {
                     "train accuracy": 86.2525,
                     "valid accuracy": 85.47,
-                    "loss": 0.049810465425252914,
+                    "loss": 0.012452616356313229,
                     "valid loss": 0.013846047222614288
                 },
                 {
                     "train accuracy": 86.8775,
                     "valid accuracy": 86.84,
-                    "loss": 0.047895848751068115,
+                    "loss": 0.011973962187767029,
                     "valid loss": 0.012827103957533836
                 },
                 {
                     "train accuracy": 87.18,
                     "valid accuracy": 87.4,
-                    "loss": 0.046469878405332565,
+                    "loss": 0.011617469601333141,
                     "valid loss": 0.012206216342747211
                 },
                 {
                     "train accuracy": 87.5075,
                     "valid accuracy": 87.27,
-                    "loss": 0.04528512433171272,
+                    "loss": 0.01132128108292818,
                     "valid loss": 0.012162482365965843
                 },
                 {
                     "train accuracy": 87.965,
                     "valid accuracy": 87.88,
-                    "loss": 0.04434400051832199,
+                    "loss": 0.011086000129580498,
                     "valid loss": 0.011437660083174706
                 },
                 {
                     "train accuracy": 88.24,
                     "valid accuracy": 86.67,
-                    "loss": 0.04280034825205803,
+                    "loss": 0.010700087063014507,
                     "valid loss": 0.013283648528158665
                 }
             ]
@@ -262,61 +262,61 @@
                 {
                     "train accuracy": 87.6475,
                     "valid accuracy": 88.49,
-                    "loss": 0.044947683811187744,
+                    "loss": 0.011236920952796936,
                     "valid loss": 0.01118936762213707
                 },
                 {
                     "train accuracy": 88.02,
                     "valid accuracy": 87.67,
-                    "loss": 0.04395677521824837,
+                    "loss": 0.010989193804562092,
                     "valid loss": 0.012010348960757256
                 },
                 {
                     "train accuracy": 88.1025,
                     "valid accuracy": 88.36,
-                    "loss": 0.04321913793683052,
+                    "loss": 0.01080478448420763,
                     "valid loss": 0.011051196604967117
                 },
                 {
                     "train accuracy": 88.3625,
                     "valid accuracy": 87.67,
-                    "loss": 0.042022839188575745,
+                    "loss": 0.010505709797143936,
                     "valid loss": 0.011579182930290699
                 },
                 {
                     "train accuracy": 88.5825,
                     "valid accuracy": 88.48,
-                    "loss": 0.04153270274400711,
+                    "loss": 0.010383175686001778,
                     "valid loss": 0.010861968621611595
                 },
                 {
                     "train accuracy": 88.9175,
                     "valid accuracy": 89.04,
-                    "loss": 0.04042566940188408,
+                    "loss": 0.01010641735047102,
                     "valid loss": 0.010756702162325382
                 },
                 {
                     "train accuracy": 89.17,
                     "valid accuracy": 87.83,
-                    "loss": 0.03934941440820694,
+                    "loss": 0.009837353602051735,
                     "valid loss": 0.011439340189099312
                 },
                 {
                     "train accuracy": 89.6275,
                     "valid accuracy": 88.46,
-                    "loss": 0.0384625680744648,
+                    "loss": 0.0096156420186162,
                     "valid loss": 0.011037127114832401
                 },
                 {
                     "train accuracy": 89.51,
                     "valid accuracy": 89.36,
-                    "loss": 0.03815576061606407,
+                    "loss": 0.009538940154016018,
                     "valid loss": 0.010271774604916573
                 },
                 {
                     "train accuracy": 89.64,
                     "valid accuracy": 89.26,
-                    "loss": 0.0369255505502224,
+                    "loss": 0.0092313876375556,
                     "valid loss": 0.010639311745762825
                 }
             ]
@@ -342,61 +342,61 @@
                 {
                     "train accuracy": 90.5525,
                     "valid accuracy": 88.28,
-                    "loss": 0.034425538033246994,
+                    "loss": 0.008606384508311749,
                     "valid loss": 0.011557619087398052
                 },
                 {
                     "train accuracy": 90.71,
                     "valid accuracy": 88.58,
-                    "loss": 0.03376463055610657,
+                    "loss": 0.008441157639026642,
                     "valid loss": 0.01111783180385828
                 },
                 {
                     "train accuracy": 90.925,
                     "valid accuracy": 89.95,
-                    "loss": 0.03285502642393112,
+                    "loss": 0.00821375660598278,
                     "valid loss": 0.009956161491572857
                 },
                 {
                     "train accuracy": 91.18,
                     "valid accuracy": 89.0,
-                    "loss": 0.0321795828640461,
+                    "loss": 0.008044895716011524,
                     "valid loss": 0.01097969152033329
                 },
                 {
                     "train accuracy": 91.2425,
                     "valid accuracy": 89.27,
-                    "loss": 0.0319027304649353,
+                    "loss": 0.007975682616233826,
                     "valid loss": 0.010744255967438221
                 },
                 {
                     "train accuracy": 91.2875,
                     "valid accuracy": 89.47,
-                    "loss": 0.03176054731011391,
+                    "loss": 0.007940136827528477,
                     "valid loss": 0.010843431577086449
                 },
                 {
                     "train accuracy": 91.5175,
                     "valid accuracy": 89.61,
-                    "loss": 0.030603667721152306,
+                    "loss": 0.007650916930288076,
                     "valid loss": 0.010162289254367352
                 },
                 {
                     "train accuracy": 91.4475,
                     "valid accuracy": 89.94,
-                    "loss": 0.030765941366553307,
+                    "loss": 0.007691485341638327,
                     "valid loss": 0.00997435487806797
                 },
                 {
                     "train accuracy": 91.5725,
                     "valid accuracy": 89.14,
-                    "loss": 0.030606282874941826,
+                    "loss": 0.0076515707187354565,
                     "valid loss": 0.010674173012375832
                 },
                 {
                     "train accuracy": 91.7725,
                     "valid accuracy": 89.68,
-                    "loss": 0.029873603954911232,
+                    "loss": 0.007468400988727808,
                     "valid loss": 0.00969773717224598
                 }
             ]
@@ -422,61 +422,61 @@
                 {
                     "train accuracy": 91.9425,
                     "valid accuracy": 89.5,
-                    "loss": 0.0293876975774765,
+                    "loss": 0.007346924394369125,
                     "valid loss": 0.010348024778068066
                 },
                 {
                     "train accuracy": 91.9425,
                     "valid accuracy": 89.91,
-                    "loss": 0.028756752610206604,
+                    "loss": 0.007189188152551651,
                     "valid loss": 0.010040667839348316
                 },
                 {
                     "train accuracy": 92.015,
                     "valid accuracy": 89.67,
-                    "loss": 0.0292048417031765,
+                    "loss": 0.007301210425794125,
                     "valid loss": 0.01019657775759697
                 },
                 {
                     "train accuracy": 92.2925,
                     "valid accuracy": 89.96,
-                    "loss": 0.02840467542409897,
+                    "loss": 0.007101168856024742,
                     "valid loss": 0.010495869442820549
                 },
                 {
                     "train accuracy": 92.2025,
                     "valid accuracy": 90.42,
-                    "loss": 0.028368374332785606,
+                    "loss": 0.007092093583196402,
                     "valid loss": 0.009574182331562042
                 },
                 {
                     "train accuracy": 92.2675,
                     "valid accuracy": 89.05,
-                    "loss": 0.02755916677415371,
+                    "loss": 0.006889791693538427,
                     "valid loss": 0.010865166783332825
                 },
                 {
                     "train accuracy": 92.3225,
                     "valid accuracy": 89.96,
-                    "loss": 0.027619261294603348,
+                    "loss": 0.006904815323650837,
                     "valid loss": 0.009954709559679031
                 },
                 {
                     "train accuracy": 92.4625,
                     "valid accuracy": 89.75,
-                    "loss": 0.02728653885424137,
+                    "loss": 0.006821634713560343,
                     "valid loss": 0.010201072320342064
                 },
                 {
                     "train accuracy": 92.335,
                     "valid accuracy": 89.42,
-                    "loss": 0.027542565017938614,
+                    "loss": 0.0068856412544846535,
                     "valid loss": 0.009973987936973572
                 },
                 {
                     "train accuracy": 92.6875,
                     "valid accuracy": 89.84,
-                    "loss": 0.026620663702487946,
+                    "loss": 0.006655165925621986,
                     "valid loss": 0.009706881828606129
                 }
             ]
@@ -502,61 +502,61 @@
                 {
                     "train accuracy": 93.405,
                     "valid accuracy": 90.89,
-                    "loss": 0.023789700120687485,
+                    "loss": 0.005947425030171871,
                     "valid loss": 0.009773602709174156
                 },
                 {
                     "train accuracy": 93.255,
                     "valid accuracy": 90.17,
-                    "loss": 0.024389635771512985,
+                    "loss": 0.006097408942878246,
                     "valid loss": 0.010060860775411129
                 },
                 {
                     "train accuracy": 93.055,
                     "valid accuracy": 88.57,
-                    "loss": 0.025067482143640518,
+                    "loss": 0.0062668705359101295,
                     "valid loss": 0.01169063150882721
                 },
                 {
                     "train accuracy": 92.8625,
                     "valid accuracy": 90.41,
-                    "loss": 0.02570435404777527,
+                    "loss": 0.006426088511943817,
                     "valid loss": 0.009661293588578701
                 },
                 {
                     "train accuracy": 92.5675,
                     "valid accuracy": 89.93,
-                    "loss": 0.026610082015395164,
+                    "loss": 0.006652520503848791,
                     "valid loss": 0.009803451597690582
                 },
                 {
                     "train accuracy": 92.5725,
                     "valid accuracy": 90.0,
-                    "loss": 0.027023378759622574,
+                    "loss": 0.0067558446899056435,
                     "valid loss": 0.009744877927005291
                 },
                 {
                     "train accuracy": 92.6325,
                     "valid accuracy": 89.72,
-                    "loss": 0.026853706687688828,
+                    "loss": 0.006713426671922207,
                     "valid loss": 0.010389231145381927
                 },
                 {
                     "train accuracy": 92.2875,
                     "valid accuracy": 89.58,
-                    "loss": 0.027729973196983337,
+                    "loss": 0.006932493299245834,
                     "valid loss": 0.010225080884993076
                 },
                 {
                     "train accuracy": 92.0225,
                     "valid accuracy": 89.03,
-                    "loss": 0.028762545436620712,
+                    "loss": 0.007190636359155178,
                     "valid loss": 0.01048872247338295
                 },
                 {
                     "train accuracy": 92.0875,
                     "valid accuracy": 90.29,
-                    "loss": 0.028367534279823303,
+                    "loss": 0.007091883569955826,
                     "valid loss": 0.009850701317191124
                 }
             ]
@@ -582,61 +582,61 @@
                 {
                     "train accuracy": 92.08,
                     "valid accuracy": 89.57,
-                    "loss": 0.028990458697080612,
+                    "loss": 0.007247614674270153,
                     "valid loss": 0.010544751770794392
                 },
                 {
                     "train accuracy": 91.9925,
                     "valid accuracy": 88.55,
-                    "loss": 0.029348203912377357,
+                    "loss": 0.007337050978094339,
                     "valid loss": 0.012045539915561676
                 },
                 {
                     "train accuracy": 91.83,
                     "valid accuracy": 89.18,
-                    "loss": 0.02926739491522312,
+                    "loss": 0.00731684872880578,
                     "valid loss": 0.010561579838395119
                 },
                 {
                     "train accuracy": 91.6025,
                     "valid accuracy": 89.45,
-                    "loss": 0.030454998835921288,
+                    "loss": 0.007613749708980322,
                     "valid loss": 0.009904668666422367
                 },
                 {
                     "train accuracy": 91.64,
                     "valid accuracy": 89.37,
-                    "loss": 0.030166836455464363,
+                    "loss": 0.007541709113866091,
                     "valid loss": 0.010691044852137566
                 },
                 {
                     "train accuracy": 91.3975,
                     "valid accuracy": 88.84,
-                    "loss": 0.030725274235010147,
+                    "loss": 0.007681318558752537,
                     "valid loss": 0.011255004443228245
                 },
                 {
                     "train accuracy": 91.6575,
                     "valid accuracy": 89.76,
-                    "loss": 0.03002636320888996,
+                    "loss": 0.00750659080222249,
                     "valid loss": 0.00988125428557396
                 },
                 {
                     "train accuracy": 91.6925,
                     "valid accuracy": 89.92,
-                    "loss": 0.03032790683209896,
+                    "loss": 0.00758197670802474,
                     "valid loss": 0.009706029668450356
                 },
                 {
                     "train accuracy": 91.5925,
                     "valid accuracy": 90.03,
-                    "loss": 0.03067638725042343,
+                    "loss": 0.007669096812605858,
                     "valid loss": 0.009412029758095741
                 },
                 {
                     "train accuracy": 91.5325,
                     "valid accuracy": 88.51,
-                    "loss": 0.03078877180814743,
+                    "loss": 0.007697192952036858,
                     "valid loss": 0.011281763203442097
                 }
             ]
@@ -662,61 +662,61 @@
                 {
                     "train accuracy": 91.3675,
                     "valid accuracy": 89.17,
-                    "loss": 0.03125759959220886,
+                    "loss": 0.007814399898052216,
                     "valid loss": 0.010842325165867805
                 },
                 {
                     "train accuracy": 91.27,
                     "valid accuracy": 89.61,
-                    "loss": 0.03152058646082878,
+                    "loss": 0.007880146615207195,
                     "valid loss": 0.009837855584919453
                 },
                 {
                     "train accuracy": 91.2625,
                     "valid accuracy": 88.26,
-                    "loss": 0.03179074451327324,
+                    "loss": 0.00794768612831831,
                     "valid loss": 0.01181255653500557
                 },
                 {
                     "train accuracy": 91.05,
                     "valid accuracy": 89.61,
-                    "loss": 0.03261386975646019,
+                    "loss": 0.008153467439115047,
                     "valid loss": 0.010058386251330376
                 },
                 {
                     "train accuracy": 91.2,
                     "valid accuracy": 89.52,
-                    "loss": 0.032377809286117554,
+                    "loss": 0.008094452321529388,
                     "valid loss": 0.009980578906834126
                 },
                 {
                     "train accuracy": 91.065,
                     "valid accuracy": 88.95,
-                    "loss": 0.03231295570731163,
+                    "loss": 0.008078238926827908,
                     "valid loss": 0.01080554723739624
                 },
                 {
                     "train accuracy": 91.1025,
                     "valid accuracy": 88.94,
-                    "loss": 0.03249954804778099,
+                    "loss": 0.008124887011945248,
                     "valid loss": 0.010823455639183521
                 },
                 {
                     "train accuracy": 91.035,
                     "valid accuracy": 89.97,
-                    "loss": 0.03275923803448677,
+                    "loss": 0.008189809508621693,
                     "valid loss": 0.009674039669334888
                 },
                 {
                     "train accuracy": 91.025,
                     "valid accuracy": 89.78,
-                    "loss": 0.03230439871549606,
+                    "loss": 0.008076099678874016,
                     "valid loss": 0.009731324389576912
                 },
                 {
                     "train accuracy": 91.0425,
                     "valid accuracy": 88.91,
-                    "loss": 0.032537952065467834,
+                    "loss": 0.008134488016366959,
                     "valid loss": 0.010646892711520195
                 }
             ]
@@ -742,61 +742,61 @@
                 {
                     "train accuracy": 92.285,
                     "valid accuracy": 90.93,
-                    "loss": 0.027631545439362526,
+                    "loss": 0.0069078863598406315,
                     "valid loss": 0.008824259974062443
                 },
                 {
                     "train accuracy": 93.0125,
                     "valid accuracy": 90.81,
-                    "loss": 0.025802364572882652,
+                    "loss": 0.006450591143220663,
                     "valid loss": 0.008888151496648788
                 },
                 {
                     "train accuracy": 92.87,
                     "valid accuracy": 91.14,
-                    "loss": 0.025496739894151688,
+                    "loss": 0.006374184973537922,
                     "valid loss": 0.009013384580612183
                 },
                 {
                     "train accuracy": 93.075,
                     "valid accuracy": 90.87,
-                    "loss": 0.024951277300715446,
+                    "loss": 0.006237819325178862,
                     "valid loss": 0.008992285467684269
                 },
                 {
                     "train accuracy": 92.9825,
                     "valid accuracy": 90.63,
-                    "loss": 0.024937571957707405,
+                    "loss": 0.006234392989426851,
                     "valid loss": 0.008961528539657593
                 },
                 {
                     "train accuracy": 93.215,
                     "valid accuracy": 90.42,
-                    "loss": 0.024990860372781754,
+                    "loss": 0.006247715093195438,
                     "valid loss": 0.009496801532804966
                 },
                 {
                     "train accuracy": 93.0925,
                     "valid accuracy": 89.65,
-                    "loss": 0.02515927143394947,
+                    "loss": 0.006289817858487368,
                     "valid loss": 0.010616830550134182
                 },
                 {
                     "train accuracy": 93.2225,
                     "valid accuracy": 89.58,
-                    "loss": 0.024757368490099907,
+                    "loss": 0.006189342122524977,
                     "valid loss": 0.010458620265126228
                 },
                 {
                     "train accuracy": 93.04,
                     "valid accuracy": 90.55,
-                    "loss": 0.02490019053220749,
+                    "loss": 0.006225047633051872,
                     "valid loss": 0.009391364641487598
                 },
                 {
                     "train accuracy": 92.9475,
                     "valid accuracy": 91.0,
-                    "loss": 0.02556697279214859,
+                    "loss": 0.0063917431980371475,
                     "valid loss": 0.008634361438453197
                 }
             ]
@@ -822,61 +822,61 @@
                 {
                     "train accuracy": 93.03,
                     "valid accuracy": 91.38,
-                    "loss": 0.025146111845970154,
+                    "loss": 0.0062865279614925385,
                     "valid loss": 0.008702285587787628
                 },
                 {
                     "train accuracy": 93.01,
                     "valid accuracy": 90.6,
-                    "loss": 0.025118215009570122,
+                    "loss": 0.0062795537523925304,
                     "valid loss": 0.009486757218837738
                 },
                 {
                     "train accuracy": 93.0475,
                     "valid accuracy": 90.88,
-                    "loss": 0.025120466947555542,
+                    "loss": 0.0062801167368888855,
                     "valid loss": 0.009014750830829144
                 },
                 {
                     "train accuracy": 93.135,
                     "valid accuracy": 91.41,
-                    "loss": 0.024725712835788727,
+                    "loss": 0.006181428208947182,
                     "valid loss": 0.008723746053874493
                 },
                 {
                     "train accuracy": 92.995,
                     "valid accuracy": 90.8,
-                    "loss": 0.025023089721798897,
+                    "loss": 0.006255772430449724,
                     "valid loss": 0.009081825613975525
                 },
                 {
                     "train accuracy": 93.3125,
                     "valid accuracy": 90.76,
-                    "loss": 0.024697568267583847,
+                    "loss": 0.006174392066895962,
                     "valid loss": 0.009197869338095188
                 },
                 {
                     "train accuracy": 93.07,
                     "valid accuracy": 90.87,
-                    "loss": 0.025252943858504295,
+                    "loss": 0.006313235964626074,
                     "valid loss": 0.009034581482410431
                 },
                 {
                     "train accuracy": 92.9425,
                     "valid accuracy": 90.64,
-                    "loss": 0.024888724088668823,
+                    "loss": 0.006222181022167206,
                     "valid loss": 0.009015645831823349
                 },
                 {
                     "train accuracy": 93.08,
                     "valid accuracy": 90.76,
-                    "loss": 0.025095682591199875,
+                    "loss": 0.006273920647799969,
                     "valid loss": 0.008961358107626438
                 },
                 {
                     "train accuracy": 93.12,
                     "valid accuracy": 90.38,
-                    "loss": 0.025380773469805717,
+                    "loss": 0.006345193367451429,
                     "valid loss": 0.00956062413752079
                 }
             ]
@@ -902,61 +902,61 @@
                 {
                     "train accuracy": 92.985,
                     "valid accuracy": 90.49,
-                    "loss": 0.025231661275029182,
+                    "loss": 0.006307915318757296,
                     "valid loss": 0.009805369190871716
                 },
                 {
                     "train accuracy": 93.1225,
                     "valid accuracy": 90.66,
-                    "loss": 0.024632075801491737,
+                    "loss": 0.006158018950372934,
                     "valid loss": 0.009287379682064056
                 },
                 {
                     "train accuracy": 93.2025,
                     "valid accuracy": 90.52,
-                    "loss": 0.024774743244051933,
+                    "loss": 0.006193685811012983,
                     "valid loss": 0.009535891935229301
                 },
                 {
                     "train accuracy": 93.22,
                     "valid accuracy": 90.04,
-                    "loss": 0.0248701311647892,
+                    "loss": 0.0062175327911973,
                     "valid loss": 0.010035336017608643
                 },
                 {
                     "train accuracy": 93.125,
                     "valid accuracy": 90.81,
-                    "loss": 0.024731168523430824,
+                    "loss": 0.006182792130857706,
                     "valid loss": 0.009251183830201626
                 },
                 {
                     "train accuracy": 92.825,
                     "valid accuracy": 90.62,
-                    "loss": 0.0251392163336277,
+                    "loss": 0.006284804083406925,
                     "valid loss": 0.009582106955349445
                 },
                 {
                     "train accuracy": 93.0275,
                     "valid accuracy": 90.75,
-                    "loss": 0.025238055735826492,
+                    "loss": 0.006309513933956623,
                     "valid loss": 0.009470375254750252
                 },
                 {
                     "train accuracy": 93.1525,
                     "valid accuracy": 90.4,
-                    "loss": 0.02460620552301407,
+                    "loss": 0.006151551380753517,
                     "valid loss": 0.00997987762093544
                 },
                 {
                     "train accuracy": 93.2775,
                     "valid accuracy": 90.62,
-                    "loss": 0.024396780878305435,
+                    "loss": 0.006099195219576359,
                     "valid loss": 0.00960718933492899
                 },
                 {
                     "train accuracy": 93.2825,
                     "valid accuracy": 90.05,
-                    "loss": 0.02451050467789173,
+                    "loss": 0.006127626169472933,
                     "valid loss": 0.009929274208843708
                 }
             ]

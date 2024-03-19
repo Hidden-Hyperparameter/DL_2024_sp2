@@ -88,3 +88,4 @@ else:
     plt.plot(x,z,label='validation loss')
     plt.legend()
     plt.savefig(f'./result_{name}_loss.png')
+    print('done!')
