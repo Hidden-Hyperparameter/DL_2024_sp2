@@ -40,7 +40,7 @@ class Net(nn.Module):
     def __init__(self):
         super(
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-            # Net,self
+            Net,self
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         ).__init__()
         self.cnt=0
