@@ -109,7 +109,7 @@ After epoch 175: lr 0.000100, weight_decay 0.001500
 ```
 
 ## Tricks and Training Techniques
-I will attribute the single most important trick to the data augmentation since it directly improves the validation accuracy from around 83% to the current 92%. I prepare the data so it passes through the following transformations before the `ToTensor` transform:
+I will attribute the single most important trick to the data augmentation since it directly improves the validation accuracy from around 83% to the current 92%. Before each training for 10 or 15 epochs, I prepare the data so it passes through the following transformations before the `ToTensor` transform:
 
 1. RandomHorizontalFlip
 2. RandomCrop(size=128,padding=4)
